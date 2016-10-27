@@ -57,7 +57,7 @@ class Batting(models.Model):
     def on_base(self):
         num_1 = float(int(self.hits.replace('', '0')) + int(self.base_on_balls.replace('', '0')) + int(self.hit_by_pitch.replace('', '0')))
         num_2 = float(int(self.at_bats.replace('', '0')) + int(self.base_on_balls.replace('', '0')) + int(self.hit_by_pitch.replace('', '0')) + int(self.sacrifice_fly.replace('', '0')))
-        return num_1 / num_2
+        return num_1 / num_2  # base 10 error so using .replace to take care of empty strings.
 
     def __str__(self):
         return str(self.id)
