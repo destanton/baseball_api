@@ -3,11 +3,6 @@ from baseball_data.models import Master, Batting, Pitching, Fielding
 
 
 class MasterSerializer(serializers.ModelSerializer):
-    # player_code = serializers.HyperlinkedRelatedField(
-    #     many=True,
-    #     view_name="master_detail_update_destroy_api_view",
-    #     read_only=True,
-    # )
 
     class Meta:
         model = Master
@@ -15,9 +10,11 @@ class MasterSerializer(serializers.ModelSerializer):
 
 
 class BattingSerializer(serializers.ModelSerializer):
-
+    player_code = serializers.HyperlinkedRelatedField(
+        view_name="master_detail_update_destroy_api_view",
+        read_only=True,
+    )
     on_base = serializers.FloatField()
-    # on_base_percentage = serializers.SerializerMethodField()
 
     class Meta:
         model = Batting
@@ -25,12 +22,22 @@ class BattingSerializer(serializers.ModelSerializer):
 
 
 class FieldingSerializer(serializers.ModelSerializer):
+    player_code = serializers.HyperlinkedRelatedField(
+        view_name="master_detail_update_destroy_api_view",
+        read_only=True,
+    )
+
     class Meta:
         model = Fielding
         fields = '__all__'
 
 
 class PitchingSerializer(serializers.ModelSerializer):
+    player_code = serializers.HyperlinkedRelatedField(
+        view_name="master_detail_update_destroy_api_view",
+        read_only=True,
+    )
+
     class Meta:
         model = Pitching
         fields = '__all__'

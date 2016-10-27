@@ -60,7 +60,7 @@ class Batting(models.Model):
         return num_1 / num_2
 
     def __str__(self):
-        return self.team_code
+        return str(self.id)
 
 
 class Pitching(models.Model):
