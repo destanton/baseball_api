@@ -54,6 +54,11 @@ class Batting(models.Model):
     sacrifice_fly = models.CharField(max_length=150, null=True, blank=True)
     ground_double_play = models.CharField(max_length=150, null=True, blank=True)
 
+    def on_base(self):
+        num_1 = sum(int(self.hits.replace('', '0')) + int(self.base_on_balls.replace('', '0')) + int(self.hit_by_pitch.replace('', '0')))
+        num_2 = sum(int(self.at_bats.replace('', '0')) + int(self.base_on_balls.replace('', '0')) + int(self.hit_by_pitch.replace('', '0')) + int(self.sacrifice_fly.replace('', '0')))
+        return num_1 / num_2
+
     def __str__(self):
         return self.team_code
 
